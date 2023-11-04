@@ -22,6 +22,11 @@ const Clientes  = () =>{
                     <td><b>Dirección</b></td>
                 </thead>
                 <tbody>
+                    <td>206570345</td>
+                    <td>Fabricio</td>
+                    <td>Porras</td>
+                    <td>Morera</td>
+                    <td>Monterrey</td>
                 </tbody>
                 <tfoot>
 
