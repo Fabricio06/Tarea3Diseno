@@ -5,6 +5,7 @@ import App from './App';
 import Main from './Main';
 import Menu from './Menu';
 import Factura from './Factura';
+import Clientes from './Clientes';
 import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "factura",
     element: <Factura/>
+  },
+  {
+    path: "clientes",
+    element: <Clientes/>
   }
 ]);
 
