@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 2;
   }
   
 .nav-logo a{
@@ -26,6 +27,7 @@
     height: -webkit-fill-available;
     transform: translateX(-100%);
     transition: 0.3s ease all;
+    z-index: 2;
   }
   .nav_items a{
     color:#fff;

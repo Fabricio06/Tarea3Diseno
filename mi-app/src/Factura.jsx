@@ -18,8 +18,6 @@ const Factura = () =>{
                 <input type="text" id="inputNombreCliente" class="estilosInput" name="inputNombreCliente"/>
                 <button type='sumbit'>Buscar</button>
             </form>
-            </div>
-            <div className='table'>
             <table>
                 <thead>
                     <td><b>#</b></td>
@@ -38,6 +36,7 @@ const Factura = () =>{
                 </tfoot>
             </table>
             </div>
+            
         </div>
     );
 }
