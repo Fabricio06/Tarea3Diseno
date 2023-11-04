@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import usuario from './routes/usuario.routes.js'
 import vendedorRoutes from './routes/vendedor.routes.js'
 
 const app = express();
@@ -10,7 +11,10 @@ app.use(express.json());
 //Usar enrutador de vendedor
 app.use('/api/vendedor', vendedorRoutes);
 
-//#region  Codigo Propio del Server.js/Api
+//Usar enrutador de usuario
+app.use('/api/usuario', usuario);
+
+//#region 
 app.get('/',(req, res) => {
     res.send('Api de la tarea 3 funcionando');
 })
