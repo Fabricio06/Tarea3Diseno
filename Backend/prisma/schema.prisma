@@ -1,0 +1,126 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model registrar{
+  id Int @id @default(autoincrement())
+  contrasena String
+  correo    String
+  usuario usuario[]
+}
+
+model usuario{
+  id Int @id @default(autoincrement())
+  nombre String
+  apellido1 String
+  apellido2 String
+  registrar registrar @relation(fields: [registrar_id], references: [id])
+  registrar_id Int
+}
+
+model cliente{
+  id Int @id @default(autoincrement())
+  nombre String
+  apellido1 String
+  apellido2 String
+  direccion String
+  factura factura[]
+}
+
+model vendedor{
+  id Int @id @default(autoincrement())
+  nombre String
+  apellido1 String
+  apellido2 String
+  factura factura[]
+}
+
+model factura{
+  id Int @id @default(autoincrement())
+  vendedor vendedor @relation(fields: [vendedor_id],references: [id])
+  vendedor_id Int
+  cliente cliente @relation(fields: [cliente_id], references: [id])
+  cliente_id  Int
+  estado Boolean
+  fecha DateTime
+  subtotal  BigInt
+  total     BigInt
+  detalle_factura detalle_factura @relation(fields: [detalle_factura_id], references: [id])
+  detalle_factura_id Int
+  factura_detalle_factura factura_detalle_factura[]
+}
+
+model factura_detalle_factura{
+  id Int @id @default(autoincrement())
+  factura factura @relation(fields: [factura_id],references: [id])
+  factura_id Int
+  detalle_factura detalle_factura @relation(fields: [detalle_factura_id],references: [id])
+  detalle_factura_id Int
+}
+
+model detalle_factura{
+  id Int @id @default(autoincrement())
+  cantidad Int
+  factura factura[]
+  factura_detalle_factura factura_detalle_factura[]
+}
+
+model producto{
+  id Int @id @default(autoincrement())
+  categoria_producto categoria_producto @relation(fields: [categoria_id], references: [id])
+  categoria_id Int
+  promocion promocion @relation(fields: [promocion_id], references: [id])
+  promocion_id Int
+  nombre String
+  distruidor distribuidor @relation(fields: [distribuidora_id], references: [id])
+  distribuidora_id Int
+  cantidad   String
+  precio_unitario BigInt
+}
+
+model categoria_producto{
+  id Int @id @default(autoincrement())
+  nombre String
+  producto producto[]
+}
+
+model distribuidor{
+  id Int @id @default(autoincrement())
+  nombre String
+  producto producto[]
+}
+
+model promocion{
+  id Int @id @default(autoincrement())
+  nombre_promocion String
+  descuento descuento @relation(fields: [descuento_id], references: [id])
+  descuento_id Int
+  motivo_promocion String
+  producto producto[]
+}
+
+model descuento{
+  id Int @id @default(autoincrement())
+  porcentaje Int //Porcentaje de Descuento
+  promocion promocion[]
+}
+
+model impuesto{
+  id Int @id @default(autoincrement())
+  nombre String
+  porcentaje String //Porcentaje de Impuesto
+}
+
+
+
+
+
