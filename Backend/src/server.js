@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import usuario from './routes/usuario.routes.js'
 import vendedorRoutes from './routes/vendedor.routes.js'
+import clienteRoutes from './routes/cliente.routes.js'
 
 const app = express();
 
@@ -13,6 +14,9 @@ app.use('/api/vendedor', vendedorRoutes);
 
 //Usar enrutador de usuario
 app.use('/api/usuario', usuario);
+
+//Usar enturador de cliente
+app.use('/api/cliente', clienteRoutes);
 
 //#region 
 app.get('/',(req, res) => {

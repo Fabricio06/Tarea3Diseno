@@ -1,5 +1,4 @@
 import {pool} from '../db/dbConfig.js'
-import { registrarUsuario } from '../functions/registrarUsuario.function.js';
 
 export const getUsuario = async(req, res) => {
     try {
