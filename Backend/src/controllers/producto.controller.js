@@ -1,8 +1,8 @@
 import {pool} from '../db/dbConfig.js'
 
-export const getUsuario = async(req, res) => {
+export const getProducto = async(req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM usuario');
+        const result = await pool.query('SELECT * FROM producto');
         res.json(result.rows);
     } catch (err) {
         console.error(err);
@@ -10,10 +10,10 @@ export const getUsuario = async(req, res) => {
     }
 }
 
-export const getUsuarioById = async(req, res) => {
+export const getProductoById = async(req, res) => {
     try {
         const { id } = req.params;
-        const result = await pool.query('SELECT * FROM usuario WHERE id = $1', [id]);
+        const result = await pool.query('SELECT * FROM producto WHERE id = $1', [id]);
         res.json(result.rows[0]);
     } catch (err) {
         console.error(err);
@@ -21,7 +21,7 @@ export const getUsuarioById = async(req, res) => {
     }
 }
 
-export const createUsuario = async(req, res) => {
+export const createProducto = async(req, res) => {
     try {
         let { nombre, apellido1, apellido2, contrasena, correo } = req.body; 
         await pool.query('BEGIN');
@@ -47,23 +47,23 @@ export const createUsuario = async(req, res) => {
     }
 }
 
-export const updateUsuario = async(req, res) => {
+export const updateProducto = async(req, res) => {
     try {
         const { id } = req.params;
-        const { nombre, apellido1, apellido2, registrar_id } = req.body;
-        await pool.query('UPDATE usuario SET nombre = $1, apellido1 = $2, apellido2 = $3, registrar_id = $4 WHERE id = $5', [nombre, apellido1, apellido2, registrar_id, id]);
-        res.json({ message: 'Usuario actualizado exitosamente' });
+        const { promocion_id, nombre, cantidad, precio_unitario, categoria, distribuidor } = req.body;
+        await pool.query('UPDATE producto SET categoria_id = $1, promocion_id = $2, nombre = $3, distribuidora_id = $4, cantidad = $5, precio_unitario = $6 WHERE id = $5', [nombre, apellido1, apellido2, registrar_id, id]);
+        res.json({ message: 'producto actualizado exitosamente' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
 
-export const deleteUsuario = async(req, res) => {
+export const deleteProducto = async(req, res) => {
     try {
         const { id } = req.params;
-        await pool.query('DELETE FROM usuario WHERE id = $1', [id]);
-        res.json({ message: 'Usuario eliminado exitosamente' });
+        await pool.query('DELETE FROM producto WHERE id = $1', [id]);
+        res.json({ message: 'Producto eliminado exitosamente' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
