@@ -1,25 +1,26 @@
 import React from 'react';
 import Menu from './Menu';
 
-const Clientes  = () =>{
+
+const Producto = () =>{
     return(
-        <div className='Cliente'>
+        <div className='Producto'>
             <div>
                 <Menu/>
             </div>
             <div className='form2'>
             <form action="./php/formulario.php" method="post" autocomplete="off">
-                <label for="inputNombreFactura">Id cliente:</label>
-                <input type="text" id="inputNombreFactura" class="estilosInput" name="inputNombreFactura"/>
+                <label for="inputNombreProducto">Id producto:</label>
+                <input type="text" id="inputNombreProducto" class="estilosInput" name="inputNombreProducto"/>
                 <button type='sumbit'>Buscar</button>
             </form>
             <table>
                 <thead>
                     <td><b>id</b></td>
                     <td><b>Nombre</b></td>
-                    <td><b>Primer Apellido</b></td>
-                    <td><b>Segundo Apellido</b></td>
-                    <td><b>Dirección</b></td>
+                    <td><b>Precio Unitario</b></td>
+                    <td><b>Cantidad</b></td>
+                    <td><b>Categoria</b></td>
                 </thead>
                 <tbody>
                 </tbody>
@@ -28,11 +29,11 @@ const Clientes  = () =>{
                 </tfoot>
             </table>
             <div className='Agregar'>
-            <button type='sumbit'><a href="agregarCliente">Agregar Cliente</a></button>
+            <button type='sumbit'><a href="agregarProducto">Agregar Prodcuto</a></button>
             </div>
             </div>
         </div>
     );
 }
 
-export default Clientes;
+export default Producto;

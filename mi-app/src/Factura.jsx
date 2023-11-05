@@ -11,12 +11,10 @@ const Factura = () =>{
             </div>
             <div className='form2'>
             <form action="./php/formulario.php" method="post" autocomplete="off">
-                <label for="inputNombreFactura">Numero factura:</label>
+                <label for="inputNombreFactura">Id factura:</label>
                 <input type="text" id="inputNombreFactura" class="estilosInput" name="inputNombreFactura"/>
-                <br></br>
-                <label for="inputNombreCliente">Nombre Cliente:</label>
-                <input type="text" id="inputNombreCliente" class="estilosInput" name="inputNombreCliente"/>
                 <button type='sumbit'>Buscar</button>
+                
             </form>
             <table>
                 <thead>
@@ -25,7 +23,6 @@ const Factura = () =>{
                     <td><b>Cliente</b></td>
                     <td><b>Vendedor</b></td>
                     <td><b>Estado</b></td>
-                    <td><b>Subtotal</b></td>
                     <td><b>Total</b></td>
                 </thead>
                 <tbody>
@@ -35,6 +32,9 @@ const Factura = () =>{
 
                 </tfoot>
             </table>
+            <div className='Agregar'>
+            <button type='sumbit'><a href="agregarFactura">Agregar Factura</a></button>
+            </div>
             </div>
             
         </div>

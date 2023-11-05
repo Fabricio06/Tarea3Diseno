@@ -7,12 +7,12 @@ const Menu = () =>{
     
     return(
         <div className='Menu'>
-            <div className='nav-logo'><a href="/App"><strong>TEC</strong>Software</a></div>
+            <div className='nav-logo'><a href="/Main"><strong>TEC</strong>Software</a></div>
             <div className={`nav_items ${isOpen && "open"}`}>
-                <a href="#">Productos</a>
+                <a href="producto">Productos</a>
                 <a href="factura">Facturas</a>
                 <a href="clientes">Clientes</a>
-                <a href="#">Promociones</a>
+                <a href="promocion">Promociones</a>
             </div>
             <div className={`nav_toggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)}>
                 <span></span>
