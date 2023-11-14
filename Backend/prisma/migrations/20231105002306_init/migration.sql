@@ -14,23 +14,6 @@
   - Added the required column `descuento` to the `promocion` table without a default value. This is not possible if the table is not empty.
 
 */
--- DropForeignKey
-ALTER TABLE "producto" DROP CONSTRAINT "producto_categoria_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "producto" DROP CONSTRAINT "producto_distribuidora_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "promocion" DROP CONSTRAINT "promocion_descuento_id_fkey";
-
--- AlterTable
-ALTER TABLE "factura" ADD COLUMN     "impuesto" INTEGER NOT NULL;
-
--- AlterTable
-ALTER TABLE "producto" DROP COLUMN "categoria_id",
-DROP COLUMN "distribuidora_id",
-ADD COLUMN     "categoria" TEXT NOT NULL,
-ADD COLUMN     "distribuidor" TEXT NOT NULL;
 
 -- AlterTable
 ALTER TABLE "promocion" DROP COLUMN "descuento_id",

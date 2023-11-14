@@ -1,18 +1,15 @@
 import express from 'express'
 import cors from 'cors'
 import usuario from './routes/usuario.routes.js'
-import vendedorRoutes from './routes/vendedor.routes.js'
 import clienteRoutes from './routes/cliente.routes.js'
 import producto from './routes/producto.routes.js'
+import factura from './routes/factura.routes.js'
 
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-//Usar enrutador de vendedor
-app.use('/api/vendedor', vendedorRoutes);
 
 //Usar enrutador de usuario
 app.use('/api/usuario', usuario);
@@ -22,6 +19,9 @@ app.use('/api/cliente', clienteRoutes);
 
 //Usar enrutador de producto
 app.use('/api/producto', producto);
+
+//Usar enrutador de factura
+app.use('/api/factura', factura);
 
 
 //#region 

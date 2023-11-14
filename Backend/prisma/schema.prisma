@@ -33,7 +33,6 @@ model cliente{
   apellido1 String
   apellido2 String
   direccion String
-  factura factura[]
 }
 
 model vendedor{
@@ -41,28 +40,18 @@ model vendedor{
   nombre String
   apellido1 String
   apellido2 String
-  factura factura[]
 }
 
 model factura{
   id Int @id @default(autoincrement())
-  vendedor vendedor @relation(fields: [vendedor_id],references: [id])
-  vendedor_id Int
-  cliente cliente @relation(fields: [cliente_id], references: [id])
-  cliente_id  Int
+  nombre_cliente String
   estado Boolean
   fecha DateTime
-  subtotal  BigInt
   total     BigInt
-  detalle_factura detalle_factura @relation(fields: [detalle_factura_id], references: [id])
-  detalle_factura_id Int
-  factura_detalle_factura factura_detalle_factura[]
-  impuesto Int
 }
 
 model factura_detalle_factura{
   id Int @id @default(autoincrement())
-  factura factura @relation(fields: [factura_id],references: [id])
   factura_id Int
   detalle_factura detalle_factura @relation(fields: [detalle_factura_id],references: [id])
   detalle_factura_id Int
@@ -71,18 +60,14 @@ model factura_detalle_factura{
 model detalle_factura{
   id Int @id @default(autoincrement())
   cantidad Int
-  factura factura[]
   factura_detalle_factura factura_detalle_factura[]
 }
 
 model producto{
   id Int @id @default(autoincrement())
   categoria String
-  promocion promocion @relation(fields: [promocion_id], references: [id])
-  promocion_id Int
   nombre String
-  distribuidor String
-  cantidad   String
+  cantidad   Int
   precio_unitario BigInt
 }
 
@@ -91,7 +76,6 @@ model promocion{
   nombre_promocion String
   descuento Int //Porcentaje de Descuento
   motivo_promocion String
-  producto producto[]
 }
 
 
