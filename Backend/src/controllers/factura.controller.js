@@ -36,6 +36,19 @@ export const getFacturaID = async(req, res) => {
     }
 }
 
+export const updateFactura = async(req, res) => {
+    try{
+        const { id } = req.params;
+        const { estado, fecha, nombre_cliente, total } = req.body;
+        await pool.query('UPDATE factura SET estado = $1, fecha = $2, nombre_cliente = $3, total = $4 WHERE id = $5', [estado, fecha, nombre_cliente, total, id]);
+        res.json({ message: 'Factura actualizado exitosamente' });        
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+
 export const deleteFactura = async(req, res) => {
     try {
         const { id } = req.params;
