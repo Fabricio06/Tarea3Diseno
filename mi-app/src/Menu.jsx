@@ -11,8 +11,7 @@ const Menu = () =>{
             <div className={`nav_items ${isOpen && "open"}`}>
                 <a href="producto">Productos</a>
                 <a href="factura">Facturas</a>
-                <a href="clientes">Clientes</a>
-                <a href="promocion">Promociones</a>
+                
             </div>
             <div className={`nav_toggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)}>
                 <span></span>
