@@ -1,5 +1,6 @@
 import React from  'react';
 import Menu from './Menu';
+import { Outlet } from 'react-router-dom';
 import Factura from './Factura';
 
 
@@ -10,7 +11,7 @@ const Main = () =>{
                 <Menu/>
             </div>
             <div>
-                
+            <Outlet /> {/* Este componente renderiza las rutas anidadas según la URL */}                
             </div>
         </div>
     )
