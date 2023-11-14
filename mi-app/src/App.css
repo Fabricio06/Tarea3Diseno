@@ -108,8 +108,7 @@ body {
     position: relative;
     z-index: 1;
     background: #FFFFFF;
-    width: 560px;
-    height: 360px;
+    width: 570px;
     margin-top: 90px;
     margin-left: 400px;
     padding: 35px;
@@ -150,17 +149,19 @@ body {
 }
 
 .form2 table{
-  display: flex;
+  
   flex-direction: column; 
   align-items: center; 
+  margin-right: 20px;
 }
 
-.form2 table thead{
+.form2 table thead {
   background-color: #43A047;
   color: #FFFFFF;
+  
 }
 
-.form2 table tbody{
+.form2 table tbody {
   background-color: #FFFFFF;
   color: #000000;
 }
@@ -179,6 +180,20 @@ body {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   background: #4CAF50;
+  width: 30%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.form2 .Eliminar button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  background:#4d4d4d;
   width: 30%;
   border: 0;
   padding: 15px;

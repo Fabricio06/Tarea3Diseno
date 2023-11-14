@@ -15,6 +15,14 @@ const Factura = () => {
       .catch(error => console.error('Error al obtener todas las facturas:', error));
   };
 
+  const [updateData, setUpdateData] = useState({
+    fecha: '',
+    nombre_cliente: '',
+    estado: '',
+    total: '',
+  });
+  
+
   useEffect(() => {
     // Obtener todas las facturas al cargar la página
     fetchAllFacturas();
@@ -73,6 +81,69 @@ const Factura = () => {
       console.warn('No hay ID de factura proporcionado para eliminar.');
     }
   };
+ 
+  const handleUpdateData = () => {
+    // Lógica para enviar los datos actualizados al servidor
+    fetch(`${API_URL}/${idFactura}`, {
+      method: 'PUT', // Utiliza el método HTTP adecuado para la actualización (por ejemplo, PUT)
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    })
+      .then(response => {
+        if (response.ok) {
+          // Actualización exitosa, vuelve a cargar todas las facturas
+          fetchAllFacturas();
+          setFacturaData(null); // Limpia los datos de la factura después de actualizar
+          setUpdateData({}); // Limpia los datos de actualización después de actualizar
+        } else {
+          console.error('Error al actualizar la factura:', response.statusText);
+        }
+      })
+      .catch(error => console.error('Error al actualizar la factura:', error));
+  };
+
+  if (idFactura) {
+    fetch(`${API_URL}/${idFactura}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data) {
+          setUpdateData({
+            fecha: data.fecha,
+            nombre_cliente: data.nombre_cliente,
+            estado: data.estado,
+            total: data.total,
+          });
+        } else {
+          console.warn('No se encontró ninguna factura con el ID proporcionado.');
+        }
+      })
+      .catch(error => console.error('Error al obtener datos de la factura:', error));
+  } else {
+    console.warn('No hay ID de factura proporcionado para actualizar.');
+  }
+
+
+{updateData && (
+  <form>
+    {/* Agrega campos de entrada para cada dato que deseas actualizar */}
+    <label htmlFor="updateFecha">Fecha:</label>
+    <input
+      type="text"
+      id="updateFecha"
+      name="updateFecha"
+      value={updateData.fecha}
+      onChange={(e) => setUpdateData({ ...updateData, fecha: e.target.value })}
+    />
+    
+    {/* Repite este patrón para otros campos como nombre_cliente, estado, total */}
+
+    <button type="button" onClick={handleUpdateData}>Actualizar</button>
+  </form>
+)}
+
+
 
   return (
     <div className='Factura'>
@@ -91,7 +162,6 @@ const Factura = () => {
               <th><b>#</b></th>
               <th><b>Fecha</b></th>
               <th><b>Cliente</b></th>
-              <th><b>Vendedor</b></th>
               <th><b>Estado</b></th>
               <th><b>Total</b></th>
             </tr>
@@ -102,7 +172,7 @@ const Factura = () => {
                 <td>{facturaData.id}</td>
                 <td>{facturaData.fecha}</td>
                 <td>{facturaData.nombre_cliente}</td>
-                <td>{facturaData.vendedor}</td>
+                
                 <td>{facturaData.estado}</td>
                 <td>{facturaData.total}</td>
               </tr>
@@ -112,7 +182,6 @@ const Factura = () => {
                 <td>{factura.id}</td>
                 <td>{factura.fecha}</td>
                 <td>{factura.nombre_cliente}</td>
-                <td>{factura.vendedor}</td>
                 <td>{factura.estado}</td>
                 <td>{factura.total}</td>
               </tr>
@@ -124,8 +193,12 @@ const Factura = () => {
         </table>
         <div className='Agregar'>
           <button type='submit'><a href="agregarFactura">Agregar Factura</a></button>
-          <button type='button' onClick={handleDeleteClick}>Eliminar</button>
+          
         </div>
+        <div className='Eliminar'>
+        <button type='button' onClick={handleDeleteClick}>Eliminar</button>
+        </div>
+        
       </div>
     </div>
   );
