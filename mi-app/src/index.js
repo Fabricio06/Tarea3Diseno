@@ -9,10 +9,13 @@ import Producto from './Producto';
 import AgregarProducto from './AgregarProducto';
 import AgregarFactura from './AgregarFactura';
 import reportWebVitals from './reportWebVitals';
+import EditarFactura from './EditarFactura';
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom";
+  Navigate,
+} from 'react-router-dom';
+
 
 const router = createBrowserRouter([
   {
@@ -42,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "agregarFactura",
     element: <AgregarFactura/>
+  },
+  {
+    path: "editar/:id",
+    element: <EditarFactura/>
   }
 
 

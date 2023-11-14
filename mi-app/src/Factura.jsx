@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Menu from './Menu';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Factura = () => {
   const [idFactura, setIdFactura] = useState('');
   const [facturaData, setFacturaData] = useState(null);
   const [allFacturas, setAllFacturas] = useState([]);
+
+  const navigate = useNavigate();
 
   const API_URL = 'http://localhost:3001/api/factura'; // Ajusta la URL de la API según tu endpoint
 
@@ -145,6 +148,11 @@ const Factura = () => {
 
 
 
+  const handleEditClick = (facturaId) => {
+    // Cuando se hace clic en "Editar", navega a la ruta de editar factura con el ID correspondiente
+    navigate(`/editar/${facturaId}`, { state: { id: facturaId } });
+  };  
+
   return (
     <div className='Factura'>
       <div>
@@ -184,6 +192,12 @@ const Factura = () => {
                 <td>{factura.nombre_cliente}</td>
                 <td>{factura.estado}</td>
                 <td>{factura.total}</td>
+                <td>
+                {/* Agrega el botón "Editar" como un enlace a la página de edición */} 
+                <button onClick={() => handleEditClick(factura.id)}> {/* Crea un botón que llame a la función handleEditClick con el ID de la factura */}
+                      Editar
+                    </button>
+              </td>
               </tr>
             ))}
           </tbody>
