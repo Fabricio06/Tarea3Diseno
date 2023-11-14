@@ -1,4 +1,5 @@
 import {pool} from '../db/dbConfig.js'
+import moment from 'moment';
 
 export const getFactura = async(req, res) => {
     try{
@@ -12,13 +13,26 @@ export const getFactura = async(req, res) => {
 
 export const createFactura = async(req, res) => {
     try {
-        let { nombre_cliente, estado, fecha, total } = req.body;
-        console.log({ nombre_cliente, estado, fecha, total });
-        const result = await pool.query('INSERT INTO factura (nombre_cliente,estado,fecha,total) VALUES ($1, $2, $3, $4) RETURNING *', [nombre_cliente, estado, fecha, total]);
-        res.json(result.rows[0]);
+        let { estado, fecha, nombre_cliente, total } = req.body;
+        console.log({ estado, fecha, nombre_cliente, total });
+        const fechaFormateada = fecha ? moment(fecha, 'YYYY-MM-DD').format('DD-MM-YYYY') : null;
+        console.log(fechaFormateada);
+        const result = await pool.query('INSERT INTO factura (estado,fecha,nombre_cliente,total) VALUES ($1, $2, $3, $4) RETURNING *', [estado, fechaFormateada, nombre_cliente, total]);
+        res.json(result.rows[0]);        
     } catch (error) {
         console.error('Error inserting Factura:', error);
         res.status(500).json({ error: error.message });
+    }
+}
+
+export const getFacturaID = async(req, res) => {
+    try{
+        const { id } = req.params;
+        const result = await pool.query('SELECT * FROM factura WHERE id = $1', [id]);
+        res.json(result.rows[0]);        
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 }
 

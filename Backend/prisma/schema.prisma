@@ -45,9 +45,9 @@ model vendedor{
 model factura{
   id Int @id @default(autoincrement())
   nombre_cliente String
-  estado Boolean
+  estado String
   fecha DateTime
-  total     BigInt
+  total BigInt
 }
 
 model factura_detalle_factura{

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "factura" ALTER COLUMN "fecha" SET DATA TYPE TEXT,
+ALTER COLUMN "total" SET DATA TYPE TEXT;

@@ -1,30 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from './Menu';
 
 const AgregarFactura = () =>{
+    const [formData, setFormData] = useState({
+        nombre_cliente: '',
+        estado: '',
+        fecha: '',
+        total: ''
+      });    
+
+      function imprimirInformacion() {
+        var formulario = document.getElementById("frmAgregarFactura");
+        for (var i = 0; i < formulario.elements.length; i++) {
+            console.log(formulario.elements[i].name + ": " + formulario.elements[i].value);
+        }
+    }      
+
+      const enviarDatos = async () => {
+        try {
+          // Resto del código para enviar datos
+          const response = await fetch('http://localhost:3001/api/factura/crearFactura', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+               });
+        } catch (error) {
+          console.error('Error en la solicitud:', error);
+        }
+      };
+
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({
+          ...formData,
+          [name]: value
+        });
+        imprimirInformacion();
+      };      
+
     return(
         <div className='AgregarFactura'>
             <div>
                 <Menu/>
             </div>
             <div className='form3'>
-            <form action="./php/formulario.php" method="post" autocomplete="off">
+            <form id='frmAgregarFactura'>
                 <label className="form-label">Fecha</label>
-                <input type="date" id="inputFecha" class="estilosInput" name="inputFecha"/>
+                <input type="date" id="fecha" class="estilosInput" name="fecha" value={formData.inputFecha}
+            onChange={handleInputChange}/>
                 <br/>
-                <label className="form-label">Cliente  </label>
-                <input type="text" id="inputCliente" class="estilosInput" name="inputCliente"/>
-                <br />
-                <label className="form-label">Vendedor</label>
-                <input type="text" id="inputVendedor" class="estilosInput" name="inputVendedor"/>
+                <label className="form-label">Cliente</label>
+                <input type="text" id="nombre_cliente" class="estilosInput" name="nombre_cliente"value={formData.inputCliente}
+            onChange={handleInputChange}/>
                 <br/>
-                <label className="form-label">Estado   </label>
-                <input type="text" id="inputEstado" class="estilosInput" name="inputEstado"/>
+                <label className="form-label">Estado</label>
+                <input type="text" id="estado" class="estilosInput" name="estado"value={formData.inputEstado}
+            onChange={handleInputChange}/>
                 <br/>
                 <label className="form-label">Total</label>
-                <input type="text" id="inputTotal" class="estilosInput" name="inputTotal"/>
+                <input type="number" id="total" class="estilosInput" name="total"value={formData.inputTotal}
+            onChange={handleInputChange}/>
                 <br/>
-                <button type='sumbit'>Agregar</button>
+                <button onClick={enviarDatos}>Agregar</button>
             </form>
             </div>
         </div>

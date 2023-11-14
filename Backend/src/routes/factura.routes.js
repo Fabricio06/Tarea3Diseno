@@ -1,12 +1,14 @@
 import { Router } from 'express';
-import { getFactura, createFactura, deleteFactura } from '../controllers/factura.controller.js';
+import { getFactura, getFacturaID, createFactura, deleteFactura } from '../controllers/factura.controller.js';
 const router = Router()
 
 //Obtener todos los Factura
 router.get('/', getFactura);
 
-//Crear un nuevo tecnico 
-router.post('/', createFactura);
+router.get('/:id', getFacturaID)
+
+//Crear nueva factura
+router.post('/crearFactura', createFactura);
 
 router.delete('/:id', deleteFactura);
 
