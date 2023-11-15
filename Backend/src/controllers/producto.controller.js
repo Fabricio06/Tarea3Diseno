@@ -22,6 +22,29 @@ export const createProducto = async(req, res) => {
     }
 }
 
+export const getProductoID = async(req, res) => {
+    try{
+        const { id } = req.params;
+        const result = await pool.query('SELECT * FROM producto WHERE id = $1', [id]);
+        res.json(result.rows[0]);        
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+export const updateProducto = async(req, res) => {
+    try{
+        const { id } = req.params;
+        const { categoria, nombre, cantidad, precio_unitario } = req.body;
+        await pool.query('UPDATE producto SET categoria = $1, nombre = $2, cantidad = $3, precio_unitario = $4 WHERE id = $5', [categoria, nombre, cantidad, precio_unitario, id]);
+        res.json({ message: 'Producto actualizado exitosamente' });        
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
 export const deleteProducto = async(req, res) => {
     try {
         const { id } = req.params;
