@@ -167,7 +167,7 @@ const Factura = () => {
         <table>
           <thead>
             <tr>
-              <th><b>#</b></th>
+              <th><b> #</b></th>
               <th><b>Fecha</b></th>
               <th><b>Cliente</b></th>
               <th><b>Estado</b></th>
