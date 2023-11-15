@@ -1,0 +1,1 @@
+El proyecto se descarga con github, porque es muy pesado
