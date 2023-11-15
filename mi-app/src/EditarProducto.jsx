@@ -71,6 +71,9 @@ const EditarProducto = () => {
           <br />
           <button onClick={enviarDatos}>Guardar Cambios</button>
         </form>
+        <div>
+            <button type='sumbit'><a href="factura">Volver</a></button>
+        </div>
       </div>
     </div>
   );

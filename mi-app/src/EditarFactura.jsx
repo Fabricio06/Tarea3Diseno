@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Menu from './Menu';
 import { useParams } from 'react-router-dom';
 
+
 const EditarFactura = () => {
   const API_URL = 'http://localhost:3001/api/factura'; // Ajusta la URL de la API según tu endpoint
 
@@ -56,6 +57,8 @@ const EditarFactura = () => {
     });
     imprimirInformacion();
   };
+
+  
 
   return (
     <div className='EditarFactura'>

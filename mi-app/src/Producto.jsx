@@ -107,8 +107,8 @@ const Producto = () =>{
                     <td><b>id</b></td>
                     <td><b>Nombre</b></td>
                     <td><b>Precio Unitario</b></td>
-                    <td><b>Cantidad</b></td>
                     <td><b>Categoria</b></td>
+                    <td><b>Cantidad</b></td>
                 </thead>
                 <tbody>
                 {productoData && (

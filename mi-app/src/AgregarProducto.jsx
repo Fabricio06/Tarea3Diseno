@@ -58,7 +58,11 @@ const AgregarProducto = () =>{
             onChange={handleInputChange}/>
                 <br/>
                 <button onClick={enviarDatos}>Agregar</button>
+                
             </form>
+            <div>
+            <button type='sumbit'><a href="/producto">Volver</a></button>
+            </div>
             </div>
         </div>
     );

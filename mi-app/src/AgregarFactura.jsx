@@ -65,6 +65,9 @@ const AgregarFactura = () =>{
                 <br/>
                 <button onClick={enviarDatos}>Agregar</button>
             </form>
+            <div>
+            <button type='sumbit'><a href="/factura">Volver</a></button>
+            </div>
             </div>
         </div>
     );
