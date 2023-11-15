@@ -146,12 +146,11 @@ const Factura = () => {
   </form>
 )}
 
-
-
   const handleEditClick = (facturaId) => {
     // Cuando se hace clic en "Editar", navega a la ruta de editar factura con el ID correspondiente
     navigate(`/editar/${facturaId}`, { state: { id: facturaId } });
   };  
+
 
   return (
     <div className='Factura'>
@@ -159,10 +158,10 @@ const Factura = () => {
         <Menu />
       </div>
       <div className='form2'>
-        <form action="./php/formulario.php" method="post" autoComplete="off">
+        <form>
           <label htmlFor="inputNombreFactura">Id factura:</label>
           <input type="text" id="inputNombreFactura" className="estilosInput" name="inputNombreFactura" onChange={handleInputChange} />
-          <button type='button' onClick={handleSearchClick}>Buscar</button>
+          <button type='button' onClick={handleSearchClick}>Actualizar</button>
         </form>
         <table>
           <thead>

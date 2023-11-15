@@ -10,6 +10,8 @@ import AgregarProducto from './AgregarProducto';
 import AgregarFactura from './AgregarFactura';
 import reportWebVitals from './reportWebVitals';
 import EditarFactura from './EditarFactura';
+import EditarProducto from './EditarProducto';
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -49,8 +51,11 @@ const router = createBrowserRouter([
   {
     path: "editar/:id",
     element: <EditarFactura/>
+  },
+  {
+    path: "editar1/:id",
+    element: <EditarProducto/>
   }
-
 
 ]);
 
