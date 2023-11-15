@@ -136,7 +136,6 @@ body {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   background: #4CAF50;
-  width: 30%;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
@@ -170,7 +169,7 @@ body {
   border-spacing: 0;
   margin-top: 30px;
   padding-left: 20px;
-  padding-right: 30px;
+  
   width: 100%; 
 }
 
