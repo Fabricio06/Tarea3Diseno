@@ -1,30 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu from './Menu';
 
 const AgregarProducto = () =>{
+
+    const [formData, setFormData] = useState({
+        nombre: '',
+        precio_unitario: '',
+        categoria: '',
+        cantidad: ''
+      });          
+
+      const enviarDatos = async () => {
+        try {
+          // Resto del código para enviar datos
+          const response = await fetch('http://localhost:3001/api/producto/crearProducto', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+               });
+        } catch (error) {
+          console.error('Error en la solicitud:', error);
+        }
+      };
+
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({
+          ...formData,
+          [name]: value
+        });
+      };
+
+
     return(
         <div className='AgregarProducto'>
             <div>
                 <Menu/>
             </div>
             <div className='form3'>
-            <form action="./php/formulario.php" method="post" autocomplete="off">
+            <form>
                 <label className="form-label">Nombre</label>
-                <input type="text" id="inputNombreProducto" class="estilosInput" name="inputNombreCliente"/>
+                <input type="text" id="nombre" class="estilosInput" name="nombre"value={formData.nombre}
+            onChange={handleInputChange}/>
                 <br/>
-                <label className="form-label">Distribuidora</label>
-                <input type="text" id="inputDistribuidora" class="estilosInput" name="inputDistribuidora"/>
-                <br />
                 <label className="form-label">Precio Unitario</label>
-                <input type="text" id="inputPrecio" class="estilosInput" name="inputPrecio"/>
+                <input type="number" id="precio_unitario" class="estilosInput" name="precio_unitario"value={formData.precio_unitario}
+            onChange={handleInputChange}/>
+                <br/>
+                <label className="form-label">Categoria</label>
+                <input type="text" id="categoria" class="estilosInput" name="categoria"value={formData.categoria}
+            onChange={handleInputChange}/>
                 <br/>
                 <label className="form-label">Cantidad</label>
-                <input type="text" id="inputCantidad" class="estilosInput" name="inputCantidad"/>
+                <input type="number" id="cantidad" class="estilosInput" name="cantidad"value={formData.cantidad}
+            onChange={handleInputChange}/>
                 <br/>
-                <label className="form-label">Categoría</label>
-                <input type="text" id="inputCategoria" class="estilosInput" name="inputCategoria"/>
-                <br/>
-                <button type='sumbit'>Agregar</button>
+                <button onClick={enviarDatos}>Agregar</button>
             </form>
             </div>
         </div>
