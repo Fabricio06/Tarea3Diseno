@@ -110,7 +110,8 @@ body {
     background: #FFFFFF;
     width: 650px;
     margin-top: 90px;
-    margin-left: 400px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 35px;
     padding-top: 50px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -171,7 +172,8 @@ body {
   margin-top: 30px;
   padding-left: 20px;
   
-  width: 100%; 
+  width: 700px;
+  display: table-cell;
 }
 
 
@@ -226,7 +228,7 @@ background: #f2f2f2;
 width: 50%;
 border: 0;
 margin: 0 0 15px;
-padding: 15px;
+padding: 15px 15px 15px 10px;
 box-sizing: border-box;
 font-size: 14px;
 margin-left: 20px;
@@ -250,4 +252,26 @@ box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 border-radius: 5px;
 }
 
+
+/*Styles producto*/
+.Producto .Agregar button a{
+  text-decoration: none;
+  color: white;
+}
+
+/*Styles Factura*/
+.Factura .Agregar button a{
+  text-decoration: none;
+  color: white;
+}
+
+.EditarFactura .form3 form button a{
+  text-decoration: none;
+  color: white;
+}
+
+.form3 button a{
+  text-decoration: none;
+  color: white;
+}
 

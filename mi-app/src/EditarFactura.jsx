@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Menu from './Menu';
 import { useParams } from 'react-router-dom';
-
+import moment from 'moment';
 
 const EditarFactura = () => {
   const API_URL = 'http://localhost:3001/api/factura'; // Ajusta la URL de la API según tu endpoint
 
   //const facturaId = location.state.id;
   const { id: facturaId } = useParams();
-
   const [formData, setFormData] = useState({
     nombre_cliente: '',
     estado: '',
@@ -22,17 +21,11 @@ const EditarFactura = () => {
       .then(response => response.json())
       .then(data => {
         // Actualiza el estado formData con los valores de la factura encontrada
+        
         setFormData(data);
       })
       .catch(error => console.error('Error al obtener datos de la factura:', error));
   }, [facturaId]);
-
-  const imprimirInformacion = () => {
-    var formulario = document.getElementById("frmEditarFactura");
-    for (var i = 0; i < formulario.elements.length; i++) {
-      console.log(formulario.elements[i].name + ": " + formulario.elements[i].value);
-    }
-  };
 
   const enviarDatos = async () => {
     try {
@@ -55,7 +48,8 @@ const EditarFactura = () => {
       ...formData,
       [name]: value
     });
-    imprimirInformacion();
+    formData.fecha = moment(formData.fecha).format('YYYY-MM-DD');
+    console.log(formData.fecha)
   };
 
   
@@ -68,7 +62,7 @@ const EditarFactura = () => {
       <div className='form3'>
         <form id='frmEditarFactura'>
           <label className="form-label">Fecha</label>
-          <input type="date" id="fecha" className="estilosInput" name="fecha" value={formData.fecha} onChange={handleInputChange} />
+          <input type="date" id="fecha" className="estilosInput" name="fecha" value={formData.fecha = moment(formData.fecha).format('YYYY-MM-DD')} onChange={handleInputChange} />
           <br />
           <label className="form-label">Cliente</label>
           <input type="text" id="nombre_cliente" className="estilosInput" name="nombre_cliente" value={formData.nombre_cliente} onChange={handleInputChange} />
@@ -80,8 +74,10 @@ const EditarFactura = () => {
           <input type="number" id="total" className="estilosInput" name="total" value={formData.total} onChange={handleInputChange} />
           <br />
           <button onClick={enviarDatos}>Guardar Cambios</button>
+          <button type='submit'><a href="/factura">Volver</a></button>
         </form>
       </div>
+      
     </div>
   );
 };

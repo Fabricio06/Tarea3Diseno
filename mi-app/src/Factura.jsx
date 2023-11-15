@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Menu from './Menu';
 import { Navigate, useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 const Factura = () => {
   const [idFactura, setIdFactura] = useState('');
@@ -187,7 +188,7 @@ const Factura = () => {
             {allFacturas.map((factura) => (
               <tr key={factura.id}>
                 <td>{factura.id}</td>
-                <td>{factura.fecha}</td>
+                <td>{factura.fecha = moment(factura.fecha).format('YYYY-MM-DD')}</td>
                 <td>{factura.nombre_cliente}</td>
                 <td>{factura.estado}</td>
                 <td>{factura.total}</td>
@@ -210,6 +211,7 @@ const Factura = () => {
         </div>
         <div className='Eliminar'>
         <button type='button' onClick={handleDeleteClick}>Eliminar</button>
+        
         </div>
         
       </div>

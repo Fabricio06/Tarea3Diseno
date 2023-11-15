@@ -142,7 +142,7 @@ const Producto = () =>{
                 </tfoot>
             </table>
             <div className='Agregar'>
-            <button type='sumbit'><a href="agregarProducto">Agregar Prodcuto</a></button>
+            <button type='sumbit'><a href="agregarProducto">Agregar Producto</a></button>
             </div>
             <div className='Eliminar'>
             <button type='button' onClick={handleDeleteClick}>Eliminar</button>
